@@ -1,0 +1,19 @@
+@import './styles/varibles.scss';
+@import './styles/reset-css.scss';
+@import './styles/landing.scss';
+@import './styles/mainView.scss';
+
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&display=swap");
+
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

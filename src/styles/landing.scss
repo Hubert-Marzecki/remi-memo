@@ -1,0 +1,209 @@
+@import './varibles.scss';
+
+.landing__page {
+    height: 100vh;
+    background-image: url("https://picsum.photos/id/1038/2500/1500");
+    @include background-gradient-bg;
+  
+    background-position: left bottom;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .form__container {
+    background-color: white;
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    border-radius: $container-border-radius;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  
+    @include for-phone-only {
+      width: 90vw;
+    }
+  }
+  
+  .login__panel {
+    flex: 10;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    flex-direction: column;
+  
+    .panel__header {
+      font-family: $header-font;
+      text-align: center;
+  
+      .header {
+        font-size: 2em;
+      }
+    }
+
+    .login__with{
+        text-align: center;
+        font-family: $normal-font ;
+        font-weight: 600;
+        opacity: 0.7;
+        margin-top: 10px;
+    }
+    .social__login {
+      width: 25%;
+      margin: 10px auto 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+
+      .icon__wrapper {
+        .icon {
+          width: 40px;
+          height: 40px;
+          transition: all 0.1s ease;
+  
+          &:hover {
+            transform: scale(1.2);
+            transition: all 0.2s ease;
+          }
+        }
+      }
+      @include for-phone-only {
+        width: 50%;
+      }
+      @include for-tablet-portrait-up {
+        width: 40%;
+      }
+      @include for-tablet-landscape-up {
+        width: 40%;
+      }
+      @include for-desktop-up {
+        width: 30%;
+      }
+    }
+    .form__intro {
+      text-align: center;
+      margin-top: 20px;
+      font-family: $header-font;
+    }
+    .login__form {
+      max-width: 70%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      @include for-phone-only {
+        max-width: 90%;
+      }
+      @include for-tablet-portrait-up {
+        max-width: 90%;
+      }
+  
+      .input {
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: none;
+        font-size: $font-size;
+        font-family: $normal-font;
+        outline: none;
+        
+        &:focus {
+          outline: none;
+        }
+        @include for-phone-only {
+          font-size: 12px;
+        }
+        @include for-tablet-portrait-up {
+          font-size: 12px;
+        }
+        @include for-tablet-landscape-up {
+          font-size: $font-size;
+        }
+      }
+      .input--missing{
+        color: rgb(255, 0, 0);
+      }
+  
+      .buttons__wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2em;
+        width: 100%;
+        .form__button {
+          background-color: white;
+          width: 40%;
+          padding: 1em 2em;
+          font-size: $font-size;
+          border-radius: 10px;
+          font-family: $header-font;
+          border: none;
+  
+          &:hover {
+            cursor: pointer;
+          }
+          &--login{
+            @include background-gradient-primary;
+            box-shadow: #ababab 0 5px 10px;
+            transition: all 0.2s ease;
+  
+            &:hover {
+              box-shadow: #ababab 0 10px 20px;
+              transform: scale(1.05);
+              transition: all 0.2s ease;
+            }
+          }
+          &--register{
+            @include background-gradient-bg;
+            color: white;
+            transition: all 0.2s ease;
+  
+            &:hover {
+              box-shadow: #ababab 0 10px 20px;
+              transform: scale(1.05);
+              transition: all 0.2s ease;
+            }
+          }
+          @include for-phone-only {
+            padding: 1em 1em;
+          }
+          @include for-tablet-portrait-up {
+            font-size: 12px;
+            padding: 1em 1em;
+          }
+          @include for-tablet-landscape-up {
+            font-size: $font-size;
+            padding: 1em 2em;
+          }
+        }
+      }
+    }
+  
+    .password__revival {
+      font-family: $normal-font;
+      font-weight: 600;
+      color: gray;
+      font-size: $font-size * 0.9;
+      cursor: pointer;
+    }
+  }
+  .img__wrapper {
+    flex: 9;
+    border-top-right-radius: $container-border-radius;
+    border-bottom-right-radius: $container-border-radius;
+    @include background-gradient-primary;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    .img {
+      max-width: 30vw;
+    }
+    @include for-phone-only {
+      display: none;
+    }
+  }
+  

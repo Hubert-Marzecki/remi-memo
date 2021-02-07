@@ -1,57 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import './App.css';
+import './App.scss';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
+import Main from './components/Main';
+import Login from './components/Login';
+import Register from './components/Register';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser, setUser } from './app/userSlice';
+import PrivateRoute from './components/PrivateRoute';
+import app from './base';
+import { useFirebase, useFirestore } from 'react-redux-firebase';
+import { RootState } from './app/store';
+
 
 function App() {
+  const firebase = useFirebase()
+  const firestore = useFirestore()
+
+
+  // @ts-ignore
+  const user = useSelector((state : RootState) => state.firebase.auth);
+  function getListItems() {
+    if (user.uid) return;
+  }
+
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <PrivateRoute exact path="/" component={Main} />
+      <Route exact path="/login" component={Login}/>
+      <Route exact path="/register" component={Register}/>
+        {/* <Counter /> */}
+        {/* <button onClick={() => addItem()}>AADDDDD</button> */}
     </div>
+    </Router>
   );
 }
 
