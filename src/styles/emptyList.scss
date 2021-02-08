@@ -1,0 +1,19 @@
+@import './varibles.scss';
+
+.emptyList__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    .icon{
+        height: 100px;
+    }
+    .empty__header{
+        text-align: center;
+        font-size: 20px;
+        font-family: $header-font;
+        color: $primary;
+    }
+}

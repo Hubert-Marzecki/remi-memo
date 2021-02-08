@@ -25,7 +25,6 @@ function App() {
   const firebase = useFirebase()
   const firestore = useFirestore()
 
-
   // @ts-ignore
   const user = useSelector((state : RootState) => state.firebase.auth);
   function getListItems() {
