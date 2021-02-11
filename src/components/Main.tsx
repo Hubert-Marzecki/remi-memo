@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import {Item} from '../Model';
 import ItemTile from "./ItemTile";
-import { selectItems, setItems } from "../app/itemsSlice";
+import { selectItems, setIsAddingItem, setItems } from "../app/itemsSlice";
 import MainViewWhenEmptyItems from "./MainViewWhenEmptyItems";
+import AddNewItem from "./AddNewItem";
+import Header from "./Header";
+import MainFooter from "./MainFooter";
+import ItemList from "./ItemList";
 
 export default function Main() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const firebase = useFirebase()
   const dataBase = firebase.database();
   const dispatch = useDispatch();
@@ -32,70 +35,29 @@ export default function Main() {
             return Object.keys(item).flatMap((key) => [Number(key), item[key]].slice(1))
         })
         dispatch(setItems(arrOfObjWithoutKey));
-        console.log(items);
-        console.log(arrOfObjWithoutKey);
-        
     }
-
     function err(err:any) {
         console.log("err", err)
     }
 
-    function signOut () {
-        app.auth().signOut()
-    }
     
     useEffect(() => {
      ref.on("value", gotData, err)
     },[])
 
-    function addItem() {
-        const data = {
-            name: 'Los Angeles',
-            state: 'CA',
-            country: 'U'
-          };
-          
-        return firebase.push(user.uid, { 
-            name: 'Name',
-            type: "type",
-            expDate: "date",
-            openDate: "date",
-            img: "img",
-            icon: 'icon'
-         })
-      }
 
-      function renderItemsList() {
-      // @ts-ignore
-           return items.items.map((item : Item) => {
-                return (
-                    <>
-                    <ItemTile item={item}/>
-                    </>
-                )
-            })
-    }
 
   return (
   <div className="main__page__wrapper">
-      <div className="header">
-      <div className="hamburger__holder" onClick={() => signOut()}>
-        <Hamburger toggled={isOpen} toggle={setIsOpen}  color="#EEE7DE" rounded  />
-        </div>
-        <div className="logo__holder">
-            <h1 className="logo"> REMI APP </h1>
-        </div>
-        <div className="search__holder">
-           <BsSearch  />
-        </div>
+         {items.isAddingItem ? <AddNewItem /> : (
+             <>
+        <Header />
+         <div className="body">
+             {items.items.length === 0 ? <MainViewWhenEmptyItems /> : <ItemList/ >}
          </div>
-            <div className="body">
-                {items.items.length === 0 ? <MainViewWhenEmptyItems /> : renderItemsList()}
-            </div>
-         <div className="footer">
-                <button className="add__button" onClick={() => addItem()}>+</button>
-         </div>
+         <MainFooter />
+      </>
+         )}
       </div>
   );
 }
