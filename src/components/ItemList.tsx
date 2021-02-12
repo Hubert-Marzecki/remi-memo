@@ -4,13 +4,20 @@ import { selectItems } from "../app/itemsSlice";
 import { Item } from "../Model";
 import ItemTile from "./ItemTile";
 
-export default function ItemList() {
+export default function ItemList() : JSX.Element {
   const items = useSelector(selectItems);
 
-//   @ts-ignore
-  return  items.items.map((item : Item) => {
+  function renderList () {
+   return items.items.map((item : Item) => {
         return (
             <ItemTile item={item}/>
         )
     })
+  }
+
+  return (
+    <>
+    {renderList()}
+    </>
+  )
 }

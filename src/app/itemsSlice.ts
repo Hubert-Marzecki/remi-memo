@@ -1,15 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../Model';
-import { AppThunk, RootState } from './store';
+import { RootState } from './store';
 
 interface ItemsSlice  {
-    items: [Item] | [],
-    newItem: Item | null
+    items: Item[],
+    newItem: Item ,
+    isAddingItem: boolean
 }
 
 const initialState: ItemsSlice = {
   items: [],
-  newItem : null
+  newItem : {
+    expDate: "",
+    icon: "",
+    img: "",
+    name: "",
+    openDate: "",
+    type: "",
+  },
+  isAddingItem: false
+}
+interface UpdateItemField {
+  key: keyof Item,
+  value: string
 }
 
 export const itemsSlice = createSlice({
@@ -23,10 +36,22 @@ export const itemsSlice = createSlice({
       // immutable state based off those changes
      state.items = action.payload
     },
+    setIsAddingItem: (state, action) => {
+      state.isAddingItem = action.payload
+    },
+    addItem : (state: ItemsSlice, action: PayloadAction<Array<Item>> ) => {
+      const newState : Item[] = state.items.concat(action.payload)
+      state.items = newState;
+    },
+    updateItemField: (
+      state: ItemsSlice, 
+      action: {type: string, payload: {key: keyof Item, val: any}}) => {
+      state.newItem[action.payload.key] = action.payload.val
+    }
   },
 });
 
-export const { setItems } = itemsSlice.actions;
+export const { setItems, setIsAddingItem, addItem, updateItemField } = itemsSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
