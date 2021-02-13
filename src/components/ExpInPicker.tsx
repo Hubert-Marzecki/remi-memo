@@ -1,23 +1,31 @@
+import moment from "moment";
 import { setMaxListeners } from "process";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectItems } from "../app/itemsSlice";
+import { selectItems, updateItemField } from "../app/itemsSlice";
+import { KeyName } from "../Model";
 
 export default function ExpInPicker() :JSX.Element {
     const items = useSelector(selectItems);
-    function setExpTime() {
-        const openDate  = items.newItem.openDate;
-    }
-    const [num, setNum ] = useState<number>(10);
+    const dispatch = useDispatch();
+    const [num, setNum ] = useState<number>(1);
+    const openDate =  moment(items.newItem.openDate, "DD/MM/YYYY").toDate();
+
 
     function changeNumber(e: ChangeEvent<HTMLInputElement>) {
-        if(num < 0 ) {
-           setNum(0)
+        let val = parseInt(e.target.value, 10);
+        if(val < 1 ) {
+           setNum(1)
         } else if(e.target.value !== ""){
-           setNum(parseInt(e.target.value, 10))
-        } else {
-            setNum(0)
+           setNum(val)
+        } else if(val > 120) {
+            setNum(120)
+        } else{
+            setNum(1)
         }
+        const expDate = moment(openDate).add(num, "months");
+        const formatedDate = moment(expDate).format("DD/MM/YYYY");
+        dispatch(updateItemField({key: KeyName.ExpDate, val: formatedDate})) 
     }
 
     enum Direction {
@@ -28,8 +36,14 @@ export default function ExpInPicker() :JSX.Element {
     function clickToChange(direction:Direction) {
         if (direction === Direction.Decrease && num > 0) {
             setNum(num => --num)
+            const expDate = moment(openDate).add(num, "months");
+            const formatedDate = moment(expDate).format("DD/MM/YYYY");
+            dispatch(updateItemField({key: KeyName.ExpDate, val: formatedDate})) 
         } else if (direction === Direction.Increase) {
             setNum(num => ++num)
+            const expDate = moment(openDate).add(num, "months");
+            const formatedDate = moment(expDate).format("DD/MM/YYYY");
+            dispatch(updateItemField({key: KeyName.ExpDate, val: formatedDate})) 
         }
     }
 

@@ -53,7 +53,7 @@ export default function Main() {
              <>
         <Header />
          <div className="body">
-             {items.items.length === 0 ? <MainViewWhenEmptyItems /> : <ItemList/ >}
+             {items.items.length === 0 ? <MainViewWhenEmptyItems /> : <ItemList />}
          </div>
          <MainFooter />
       </>

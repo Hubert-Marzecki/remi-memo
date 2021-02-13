@@ -2,6 +2,7 @@ import Hamburger from "hamburger-react";
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import app from "../base";
+import searchIcon from "../assets/searchIcon.png";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,7 +19,7 @@ export default function Header() {
               <h1 className="logo"> REMI APP </h1>
           </div>
           <div className="search__holder">
-             <BsSearch  />
+            <img src={searchIcon} className="search__icon" />
           </div>
            </div>
     )

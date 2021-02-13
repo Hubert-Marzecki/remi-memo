@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useStore } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Item, KeyName } from "../Model";
 import '../styles/addNewItem.scss';
 import Header from "./Header";
 import InputTile from "./InputTile";
 import DatePicker from 'react-date-picker';
 import moment from "moment";
-import { updateItemField } from "../app/itemsSlice";
+import { itemsSlice, selectItems, updateItemField } from "../app/itemsSlice";
 import ExpInPicker from "./ExpInPicker";
 export default function AddNewItem() {
 
     const [value, onChange] = useState<any>(new Date());
     const dispatch = useDispatch();
+    const items = useSelector(selectItems);
 
     useEffect(() =>{
        const date =  moment(value).format("DD/MM/YYYY");    
@@ -30,11 +31,13 @@ export default function AddNewItem() {
                 onChange={onChange}
                 value={value}
         />
+     
         <div>
 
         MSC To Expire
         </div>
         <ExpInPicker />
+        ExpDate : {items.newItem.expDate}
             </div>
         </div>
     )
