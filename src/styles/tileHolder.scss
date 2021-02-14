@@ -1,0 +1,11 @@
+@import './varibles.scss';
+.tile__withChilder__wrapper{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    background-color: $accent;
+    width: 95%;
+    margin: 10px auto 0;
+    height: 14vh;
+    border-radius: 10px;
+}

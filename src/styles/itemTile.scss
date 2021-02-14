@@ -1,0 +1,47 @@
+@import './varibles.scss';
+
+.item__wrapper{
+    height: 23%;
+    width: 95%;
+    margin:  0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content__wrapper{
+        background-color: $accent;
+        height: 90%;
+        width: 100%;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 10px;
+        font-family: $header-font;
+    }
+
+    .icon{
+        height: 70%;
+        width: 70%;
+        border-radius: 100%;
+    }
+    .info__wrapper{
+        
+        .item__name{
+            color: $primary
+        }
+
+        .item__type{
+            font-size: $font-size * 0.8;
+            margin-top: 8px;
+            color: $secondary;
+            margin-left: 2px;
+        }
+    }
+    
+    .badge__wrapper{
+        margin-left: auto;
+        margin-right: 20px;
+        color: $primary
+    }
+}
+

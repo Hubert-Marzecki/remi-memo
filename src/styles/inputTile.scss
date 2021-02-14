@@ -1,0 +1,15 @@
+@import './varibles.scss';
+
+.input__wrapper{
+
+    .input{
+        outline: none;
+        font-family: $header-font;
+        border: none;
+        border-bottom: 2px solid $primary;
+        background-color: $accent;
+        color: $primary;
+        width: 90vw;
+        padding-bottom: 2px;
+    }
+}

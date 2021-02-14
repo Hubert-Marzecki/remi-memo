@@ -8,6 +8,7 @@ import DatePicker from 'react-date-picker';
 import moment from "moment";
 import { itemsSlice, selectItems, updateItemField } from "../app/itemsSlice";
 import ExpInPicker from "./ExpInPicker";
+import TileHolder from "./TileHolder";
 export default function AddNewItem() {
 
     const [value, onChange] = useState<any>(new Date());
@@ -22,21 +23,18 @@ export default function AddNewItem() {
     return (
         <div className="view__wrapper">
             <Header />
-            <div className="content_wrapper">
-                <h1> Add New Product </h1>
-                <InputTile placeholder="Name"  keyName={KeyName.Name} />
-                <InputTile placeholder="Type"  keyName={KeyName.Type} />
-                <h3>Date picker</h3>
-                <DatePicker  
+            <div className="content__wrapper">
+                <h1 className="view__header"> Add New Product </h1>
+                <TileHolder children={<InputTile placeholder="Name" keyName={KeyName.Name} />} />
+                <TileHolder children={ <InputTile placeholder="Type"  keyName={KeyName.Type} />} />
+                {/* <h3>Date picker</h3> */}
+                <TileHolder children={   <DatePicker  
                 onChange={onChange}
                 value={value}
-        />
-     
-        <div>
+        />} />
+                <TileHolder children={   <ExpInPicker />} />
 
-        MSC To Expire
-        </div>
-        <ExpInPicker />
+      
         ExpDate : {items.newItem.expDate}
             </div>
         </div>

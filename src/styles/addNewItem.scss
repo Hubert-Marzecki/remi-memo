@@ -1,0 +1,17 @@
+@import './varibles.scss';
+
+.view__wrapper{
+
+}
+.content__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.view__header{
+    text-align: center;
+    margin-top: 40px;
+    font-family: $header-font;
+    font-size: 26px;
+    color: $primary;
+}
