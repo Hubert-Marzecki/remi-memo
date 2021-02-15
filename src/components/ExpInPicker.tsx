@@ -8,11 +8,17 @@ import "../styles/inputTile.scss";
 export default function ExpInPicker() :JSX.Element {
     const items = useSelector(selectItems);
     const dispatch = useDispatch();
-    const [num, setNum ] = useState<number>(1);
+    const [num, setNum ] = useState<number>(0);
     const openDate =  moment(items.newItem.openDate, "DD/MM/YYYY").toDate();
 
 
     function changeNumber(e: ChangeEvent<HTMLInputElement>) {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+            let val = parseInt(e.target.value, 10);
+            setNum(val)
+         }
+
         let val = parseInt(e.target.value, 10);
         if(val < 1 ) {
            setNum(1)
@@ -50,7 +56,9 @@ export default function ExpInPicker() :JSX.Element {
     return (
         <div className="input__wrapper">
            {/* <button onClick={() => clickToChange(Direction.Decrease)}>-</button> */}
-           <input className="input" type="text" placeholder="Expires In (msc)" onChange={(e: ChangeEvent<HTMLInputElement>) => changeNumber(e)}/>
+           <input className="input"
+        //    onInput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+           type="number" value={num} placeholder="Expires In (msc)" onChange={(e: ChangeEvent<HTMLInputElement>) => changeNumber(e)}/>
            {/* <button onClick={() => clickToChange(Direction.Increase)}>+</button>  */}
         </div>
     )

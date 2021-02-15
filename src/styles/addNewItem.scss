@@ -2,16 +2,40 @@
 
 .view__wrapper{
 
+    width: 100vw;
+    overflow-x: hidden;
+
+    .add__button{
+        margin: 0 auto;
+        margin-top: 10px;
+        border: none;
+        background-color: $secondary;
+        font-family: $header-font;
+        padding: 16px 40px;
+        border-radius: 40px;
+        font-size: 25px;
+        color: white;
+        margin-top: 20px;
+    }
+    .content__wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+    .view__header{
+        text-align: center;
+        margin-top: 40px;
+        font-family: $header-font;
+        font-size: 26px;
+        color: $primary;
+    }
+    .assets__holder{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
 }
-.content__wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.view__header{
-    text-align: center;
-    margin-top: 40px;
-    font-family: $header-font;
-    font-size: 26px;
-    color: $primary;
-}
+
+
