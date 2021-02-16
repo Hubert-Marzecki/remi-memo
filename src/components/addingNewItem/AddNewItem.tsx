@@ -9,8 +9,8 @@ import moment from "moment";
 import { itemsSlice, selectItems, setIsAddingItem, updateItemField } from "../app/itemsSlice";
 import ExpInPicker from "./ExpInPicker";
 import TileHolder from "./TileHolder";
-import AddIcon from "./AddIcon";
-import AddImg from "./AddIcon";
+import AddIcon from "./addingNewItem/AddIcon";
+import AddImg from "./addingNewItem/AddIcon";
 import { isIterationStatement } from "typescript";
 import firebase from "firebase";
 export default function AddNewItem() {
